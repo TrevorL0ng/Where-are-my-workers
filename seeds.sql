@@ -14,3 +14,13 @@ VALUES
     ("Salesperson", 80000, 4),
     ("Customer Service Rep.", 60000, 5);
     
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES 
+    ("Mike", "Doe", 3),
+    ("Linda", "Tupik", 1),
+    ("Sarah", "Allen", 1, 2),
+    ("Malia", "Lourd", 2),
+    ("Ashely", "Chan", 2, 4),
+    ("Kevin", "Freekes", 3, 1),
+    ("John", "Rodriguez", 4);
+    
