@@ -20,3 +20,74 @@ const connection = mysql.createConnection({
   
     console.log('Connected!');
   });
+
+  // Creation of the main function of the application. Big 'ol list time
+  function goTrack() {
+      inquirer.prompt({
+          name:"choice",
+          type:"list",
+          message:"Welcome to your employee tracker! What would you like to do?",
+          choices: [
+              "View departments",
+              "View roles",
+              "View employees",
+              "Add department",
+              "Add role",
+              "Add employee",
+              "Update employee",
+              "Exit"
+          ]
+      }).then(function (result){
+          switch (result.choice){
+            case "View departments":
+              seeDept();
+              break;
+          }
+
+          switch (result.choice){
+            case "View roles":
+              seeRole();
+              break;
+          }
+
+          switch (result.choice){
+            case "View employees":
+              seeEmp();
+              break;
+          }
+
+          switch (result.choice){
+            case "Add department":
+              addDept();
+              break;
+          }
+          
+          switch (result.choice){
+            case "Add role":
+              addRole();
+              break;
+          }
+          
+          switch (result.choice){
+            case "Add employee":
+              addEmp();
+              break;
+          }
+          
+          switch (result.choice){
+            case "Update employee":
+              updateEmp();
+              break;
+          }
+          
+          switch (result.choice){
+            case "Exit":
+              seeYa();
+              break;
+          }
+          
+        
+          
+
+      })
+  }
