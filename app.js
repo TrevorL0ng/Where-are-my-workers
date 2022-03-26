@@ -89,9 +89,11 @@ const connection = mysql.createConnection({
   };
   // Creating all functions listed in above switch choices
 
+  // Functions just to pull existing data
+
     function seeDept() {
-      var search = "SELECT * FROM department";
-      connection.search(search, function(err, res){
+      var query = "SELECT * FROM department";
+      connection.query(query, function(err, res){
         if (err) throw (err);
         console.table(res);
         goTrack();
@@ -99,8 +101,8 @@ const connection = mysql.createConnection({
     };
 
     function seeRole() {
-      var search = "SELECT * FROM role";
-      connection.search(search, function(err, res){
+      var query = "SELECT * FROM role";
+      connection.query(query, function(err, res){
         if (err) throw (err);
         console.table(res);
         goTrack();
@@ -108,10 +110,12 @@ const connection = mysql.createConnection({
     };
 
     function seeEmp() {
-      var search = "SELECT * FROM employee";
-      connection.search(search, function(err, res){
+      var query = "SELECT * FROM employee";
+      connection.query(query, function(err, res){
         if (err) throw (err);
         console.table(res);
         goTrack();
       })
     };
+
+// Functions to add new data
