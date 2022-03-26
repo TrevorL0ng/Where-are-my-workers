@@ -112,7 +112,7 @@ const connection = mysql.createConnection({
     function seeEmp() {
       var query = "SELECT * FROM employee";
       connection.query(query, function(err, res){
-        if (err) throw (err);
+        if (err) throw err;
         console.table(res);
         goTrack();
       })
@@ -133,4 +133,39 @@ const connection = mysql.createConnection({
       console.log("Department added");
       goTrack();   
       })
-    }
+    };
+
+    function addRole(){
+      connection.query("SELECT * FROM role", function (err, res) {
+        if (err) throw err;
+
+        inquirer.prompt([{
+          name:"newRole",
+          type:"input",
+          message:"Name of new role:"},
+          { name:"yrSal",
+            type:"input",
+            message:"Yearly salary of new role"},
+            { 
+              name:"department",
+              type:"input",
+              message:"Department ID of new role"
+            }])
+          .then(function (answer){
+           connection.query("INSERT INTO role SET ?", {
+              title: answer.newRole,
+              salary: answer.yrSal,
+              department_id: answer.department
+            });
+          console.log("Role added");
+          goTrack();
+          })
+        });
+      };
+
+// Function to quit application
+
+    function seeYa(){
+      console.log("Goodbye");
+      connection.end();
+    };
