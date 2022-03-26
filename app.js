@@ -136,20 +136,17 @@ const connection = mysql.createConnection({
     };
 
     function addRole(){
-      connection.query("SELECT * FROM role", function (err, res) {
-        if (err) throw err;
-
         inquirer.prompt([{
           name:"newRole",
           type:"input",
           message:"Name of new role:"},
           { name:"yrSal",
             type:"input",
-            message:"Yearly salary of new role"},
+            message:"Yearly salary of new role:"},
             { 
               name:"department",
               type:"input",
-              message:"Department ID of new role"
+              message:"Department ID of new role:"
             }])
           .then(function (answer){
            connection.query("INSERT INTO role SET ?", {
@@ -160,9 +157,34 @@ const connection = mysql.createConnection({
           console.log("Role added");
           goTrack();
           })
-        });
-      };
+        };
 
+    function addEmp(){
+      inquirer.prompt([{
+        name:"newEmpFirst",
+        type:"input",
+        message:"First name of new employee:"},
+        { name:"newEmpLast",
+          type:"input",
+          message:"Last name of new employee:"},
+          { name:"role",
+            type:"input",
+            message:"Role ID of new employee:"},
+            { name:"manager",
+              type:"input",
+              message:"New employee's manager ID:"
+            }])
+            .then(function(answer){
+              connection.query("INSERT INTO employee SET ?",{
+                first_name: answer.newEmpFirst,
+                last_name: answer.newEmpLast,
+                role_id: answer.role,
+                manager_id: answer.manager
+              });
+              console.log("Employee added");
+              goTrack();
+            })
+    }
 // Function to quit application
 
     function seeYa(){
