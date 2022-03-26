@@ -17,8 +17,8 @@ const connection = mysql.createConnection({
     if (err) {
       throw err;
     }
-  
     console.log('Connected!');
+    goTrack();
   });
 
   // Creation of the main function of the application. Big 'ol list time
@@ -85,9 +85,33 @@ const connection = mysql.createConnection({
               seeYa();
               break;
           }
-          
-        
-          
-
       })
-  }
+  };
+  // Creating all functions listed in above switch choices
+
+    function seeDept() {
+      var search = "SELECT * FROM department";
+      connection.search(search, function(err, res){
+        if (err) throw (err);
+        console.table(res);
+        goTrack();
+      })
+    };
+
+    function seeRole() {
+      var search = "SELECT * FROM role";
+      connection.search(search, function(err, res){
+        if (err) throw (err);
+        console.table(res);
+        goTrack();
+      })
+    };
+
+    function seeEmp() {
+      var search = "SELECT * FROM employee";
+      connection.search(search, function(err, res){
+        if (err) throw (err);
+        console.table(res);
+        goTrack();
+      })
+    };
