@@ -119,3 +119,18 @@ const connection = mysql.createConnection({
     };
 
 // Functions to add new data
+
+    function addDept(){
+      inquirer.prompt([{
+        name: "newDept",
+        type: "input",
+        message: "Name of new department:"
+      }])
+      .then(function (answer){
+        connection.query("INSERT INTO department SET ?", {
+          name: answer.newDept
+        });
+      console.log("Department added");
+      goTrack();   
+      })
+    }
