@@ -184,7 +184,30 @@ const connection = mysql.createConnection({
               console.log("Employee added");
               goTrack();
             })
-    }
+           };
+
+    function updateEmp(){
+      inquirer.prompt([{
+        name:"empID",
+        type:"input",
+        message:"What is the employee's ID?:"},
+        { name:"newRole",
+          type:"input",
+          message:"What is the new role ID of the employee?:"},
+          { name:"newManager",
+            type:"input",
+            message:"What is the new manager ID of the employee?:"
+            }])
+          .then(function(answer){
+            connection.query("UPDATE employee SET ? WHERE id = ?", {
+              id: answer.empID},
+              { role_id: answer.newRole,
+                manager_id: answer.newManager
+              });
+              console.log("Employee updated");
+              goTrack();
+            })
+           };
 // Function to quit application
 
     function seeYa(){
